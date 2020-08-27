@@ -105,7 +105,7 @@ function Home() {
     useEffect(() => {
         setAverage(calculateAverage(statListByWeekday));
         setBest(calculateBest(statListByWeekday));
-        setToday(1000);
+        setToday(util.generateTimeElapsed(util.now().weekday()));
     }, [statListByWeekday])
 
     function calculateAverage(stats) {
