@@ -115,7 +115,6 @@ export default function Data(){
         if (numFilters === 0) {
             setStatList(stats);
         } else {
-            console.log(filters);
             setStatList(stats.filter(stat => util.filterStat(stat, filters)));
             setPage(0);
         }

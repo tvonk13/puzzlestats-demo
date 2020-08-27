@@ -58,19 +58,7 @@ export default function Puzzle(props) {
     const [dateString, setDateString] = useState(props.match.params.date);
     const [{isSyncing, progress}, {setIsSyncing, setProgress}] = useContext(SyncContext);
     const momentDate = util.formattedDateStringToMoment(dateString, "YYYY-MM-DD");
-    const [unixDate, setUnixDate] = useState(util.momentToUnix(momentDate));
     const [size, setSize] = useState(momentDate.day() === 0 ? 21 : 15);
-
-    useEffect(() => {
-        console.log('updating')
-        // amplify.getStatsByPuzzleDate(unixDate).then(stats => {
-        //     if (stats.length > 0) {
-        //         setStat(stats[0]);
-        //     }
-        // })
-    }, [isSyncing])
-
-    console.log(stat);
 
     function generateBoard() {
         var count = 0;
@@ -128,10 +116,6 @@ export default function Puzzle(props) {
                 <Typography>Time Elapsed: {util.secondsToFormattedTime(stat.time_elapsed)}</Typography>
                 <Typography>Last Updated: {stat.last_update_time}</Typography>
                 <Typography>Last Synced: {stat.last_sync_time}</Typography>
-                {
-                    (stat.last_sync_time === null || util.isBeforeDay(util.unixToMoment(stat.last_sync_time), util.unixToMoment(stat.last_update_time))) &&
-                    <Typography>Stat not up to date</Typography>
-                }
             </div>
             <IconButton onClick={syncData}>
                 <SyncRoundedIcon fontSize="small" />

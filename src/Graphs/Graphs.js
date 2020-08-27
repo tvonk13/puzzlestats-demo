@@ -111,7 +111,6 @@ function Graphs() {
             data = defaultWeekdayData;
         }
 
-        //console.log(data);
         return data;
     }
 
@@ -158,17 +157,16 @@ function Graphs() {
     }
 
     function filterStatList() {
-        console.log(filters);
         if (Object.keys(filters).length === 0) return statList.filter(stat => true);
         return statList.filter(stat => {
             var weekdayBool = filters.weekdays.includes(stat.weekday);
             var completedBool = filters.completed ? stat.solved : true;
-            var completedOnPuzzleDateBool = filters.completedOnPuzzleDate ? util.unixDatesEqual(stat.puzzle_date, stat.date_completed) : true;
-            var puzzleDateAfterFrom = filters.puzzleDateFrom !== null ? stat.puzzle_date > filters.puzzleDateFrom : true;
-            var puzzleDateBeforeTo = filters.puzzleDateTo !== null ? stat.puzzle_date < filters.puzzleDateTo : true;
+            var completedOnPuzzleDateBool = filters.completedOnPuzzleDate ? util.isSameDay(stat.puzzle_date, stat.date_completed) : true;
+            var puzzleDateAfterFrom = filters.puzzleDateFrom !== null ? util.isSameOrAfterDay(stat.puzzle_date, filters.puzzleDateFrom) : true;
+            var puzzleDateBeforeTo = filters.puzzleDateTo !== null ? util.isBeforeDay(stat.puzzle_date, filters.puzzleDateTo) : true;
             var puzzleDateBool = puzzleDateAfterFrom && puzzleDateBeforeTo;
-            var dateCompletedAfterFrom = filters.dateCompletedFrom !== null ? stat.date_completed > filters.dateCompletedFrom : true;
-            var dateCompletedBeforeTo = filters.dateCompletedTo !== null ? stat.date_completed < filters.dateCompletedTo : true;
+            var dateCompletedAfterFrom = filters.dateCompletedFrom !== null ? util.isSameOrAfterDay(stat.date_completed, filters.dateCompletedFrom) : true;
+            var dateCompletedBeforeTo = filters.dateCompletedTo !== null ? util.isBeforeDay(stat.date_completed, filters.dateCompletedTo) : true;
             var dateCompletedBool = dateCompletedAfterFrom && dateCompletedBeforeTo;
             var sourceBool = filters.sources.includes(stat.source);
 

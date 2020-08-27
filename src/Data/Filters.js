@@ -95,7 +95,7 @@ export default function Filters(props) {
         var numFilters = countActiveFilters();
         setNumActiveFilters(numFilters);
         filterHandler(activeFilters, numFilters);
-    }, [activeFilters, filterHandler]);
+    }, [activeFilters]);
 
     useEffect(() => {
         numActiveFilters === 0 ? setIsChipListOpen(false) : setIsChipListOpen(true);

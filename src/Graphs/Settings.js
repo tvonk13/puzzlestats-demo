@@ -96,10 +96,10 @@ function Settings({filterChangeHandler}) {
             weekdays: dropdownMapToList(weekdays),
             completed: completed,
             completedOnPuzzleDate: completedOnPuzzleDate,
-            puzzleDateFrom: util.momentToUnix(puzzleDateFrom),
-            puzzleDateTo: util.momentToUnix(puzzleDateTo),
-            dateCompletedFrom: util.momentToUnix(dateCompletedFrom),
-            dateCompletedTo: util.momentToUnix(dateCompletedTo),
+            puzzleDateFrom: puzzleDateFrom,
+            puzzleDateTo: puzzleDateTo,
+            dateCompletedFrom: dateCompletedFrom,
+            dateCompletedTo: dateCompletedTo,
             sources: dropdownMapToList(sources),
         })
     }, [catValue, catAllGroup, calculation, weekdays, completedFilters, dateRanges, sources])

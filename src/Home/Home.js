@@ -82,7 +82,6 @@ function Home() {
         statList.forEach(stat => {
             if (stat.solved) solvedCount++;
 
-            //console.log(stat.puzzle_date + " | " + stat.date_completed + " | " + stat.solved + " | " + util.isSameDay(stat.puzzle_date, stat.date_completed));
             if (stat.eligible) {
                 currentStreakCount++;
             } else {
@@ -120,7 +119,6 @@ function Home() {
         });
         if (total === 0) return total;
         var avg = total/count;
-        console.log("average: " + avg)
         return Math.round(total/count);
     }
 

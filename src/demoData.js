@@ -16,19 +16,20 @@ function generateStats() {
     var stats = [];
 
     for (let step = 1; step < 90; step++) {
-        const puzzleDate = moment().month(0).date(step);
+        const puzzleDate = moment().date(step).subtract(90, 'd');
         const weekday = puzzleDate.weekday();
         const dateDiff = getRandomInt(0,5);
         const solved = getRandomInt(0,11) < 8;
         const chance = getRandomInt(0,11);
         let dateCompleted = null;
         if (solved) {
-            dateCompleted = moment().month(0);
+            dateCompleted = moment();
             if (chance < 8) {
-                dateCompleted.date(step)
+                dateCompleted.date(step);
             } else {
                 dateCompleted.date(step + dateDiff);
             }
+            dateCompleted.subtract(90, 'd');
             dateCompleted.hour(getRandomInt(1,12)).minute(getRandomInt(0,60))
         }
         const eligible = solved && puzzleDate.isSame(dateCompleted, 'day');

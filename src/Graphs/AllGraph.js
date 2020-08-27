@@ -4,8 +4,6 @@ import * as util from '../Utils/util';
 
 function AllGraph({data, colors}) {
 
-    console.log(data);
-
     return (
         <ResponsiveLine
             data={data}

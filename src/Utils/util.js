@@ -16,8 +16,6 @@ export function getWeekdayToday() {
 }
 
 export function getStatListByWeekday(statList, weekday) {
-    console.log(statList);
-    console.log(weekday);
     return statList.filter(stat => stat.weekday === weekday);
 }
 
@@ -50,15 +48,6 @@ export function secondsToMoment(totalSeconds) {
     var seconds = remainingSeconds - minutes * 60;
 
     return moment.utc(0).hours(hours).minutes(minutes).seconds(seconds);
-}
-
-export function momentToUnix(momentDate) {
-    if (momentDate === null) return null;
-    return momentDate.unix();
-}
-
-export function unixToMoment(unixTimestamp) {
-    return moment.unix(unixTimestamp);
 }
 
 export function formattedDateStringToMoment(dateString, format) {
@@ -119,10 +108,6 @@ export function isAfterDay(date1, date2) {
     return moment(date1).isAfter(moment(date2), 'day');
 }
 
-export function addDays(date, numDays) {
-    return date.add(numDays, 'days')
-}
-
 export function isBlankOrNull(value) {
     return value === '' || value === null;
 }
@@ -157,13 +142,6 @@ export function fromSourceNyt(type) {
 export function momentDaysEqual(date1, date2) {
     if (date1 === null || date2 === null) return false;
     return moment(date1).isSame(date2, 'day');
-}
-
-export function unixDatesEqual(date1, date2) {
-    if (date1 === null || date2 === null) return false;
-    date1 = unixToMoment(date1);
-    date2 = unixToMoment(date2);
-    return momentDaysEqual(date1, date2);
 }
 
 /*---------- HELPER METHODS ----------*/
